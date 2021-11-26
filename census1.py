@@ -61,3 +61,22 @@ beta_col1,beta_col2,beta_col3 = st.beta_columns(3)
 with beta_col1:
       if st.checkbox('Show all column names'):
         st.table(list(census_df.columns))
+# Add a checkbox in the second column. Display the column data-types of 'census_df' on the click of checkbox.
+with beta_col2:
+  if st.checkbox("View column data type"):
+    st.table(census_df.dtypes)
+
+# Add a checkbox in the third column followed by a selectbox which accepts the column name whose data needs to be displayed.
+with beta_col2:
+      if st.checkbox('View column data'):
+        column_data = st.selectbox('Select Column',('native-country','workclass','occupation'))
+        if column_data == 'native-country':
+          st.write(census_df['native-country'])
+        elif column_data == 'workclass':
+          st.write(census_df['workclass'])
+        elif column_data =='occupation':
+          st.write(census_df['occupation'])
+
+# Display summary of the dataset on the click of checkbox.
+if st.checkbox('Show summary'):
+  st.table(census_df.describe())
